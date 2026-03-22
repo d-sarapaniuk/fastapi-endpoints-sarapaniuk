@@ -1,6 +1,6 @@
 def calculate_sum(a: int, b: int) -> int:
-    return a + b
+    return int(a) + int(b)
 
 
 def repeat_text(text: str, times: int) -> str:
-    return text * times
+    return "".join([text for _ in range(times)])
