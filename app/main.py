@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.utils import calculate_sum, repeat_text
+from app.schemas import SumRequest, RepeatRequest
 
 app = FastAPI()
 
@@ -15,14 +16,10 @@ def health():
 
 
 @app.post("/sum")
-def sum_values(payload: dict):
-    a = payload["a"]
-    b = payload["b"]
-    return {"result": calculate_sum(a, b)}
+def sum_values(payload: SumRequest):
+    return {"result": calculate_sum(payload.a, payload.b)}
 
 
 @app.post("/repeat")
-def repeat_value(payload: dict):
-    text = payload["text"]
-    times = payload["times"]
-    return {"result": repeat_text(text, times)}
+def repeat_value(payload: RepeatRequest):
+    return {"result": repeat_text(payload.text, payload.times)}
